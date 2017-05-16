@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Angular Setup</title>
+    <title>Angular Expressions</title>
 </head>
 <body ng-controller="myController">
 
-    <p>
-        <input type="text" ng-model="itemIndex"/>
-        <input type="button" ng-click="getItem()" value="Get Item" />
-    </p>
-    <p>
-        Current Item : {{currentItem}}
-    </p>
-    <p>
-        Random Fruit : {{randomFruit}}
-    </p>
+    <p>Standard Expressions</p>
+    <p>Random Value: {{randomValue}}</p>
+
+    <p>Onetime Expressions</p>
+    <p>Random Value: {{::randomValue}}</p>
+
+    <p>Operation Expressions</p>
+    <p>Total Value: {{qty*cost}}</p>
+
+    <p>Logical Expressions</p>
+    <p>Random Value greater than 50000: {{randomValue > 50000}}</p>
+
+    <p>HTML Attribute Expressions</p>
+    <div style="background:#ff00dd; width: {{randomValue/100}}px">Dancing DIV</div>
+
     
     <script type="text/javascript" src="../lib/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>

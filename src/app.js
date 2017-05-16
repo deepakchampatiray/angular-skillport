@@ -9,17 +9,12 @@
                         "$scope"
                         ,"$interval"
                         ,function($scope, $interval) {
-                            var fruits = ["apple", "banana", "cherry", "mango", "strawberry", "peach", "orange"];
-                            $scope.itemIndex = null;
-                            $scope.currentItem = "";
-                            $scope.getItem = function(){
-                                $scope.currentItem = fruits[$scope.itemIndex];
-                            }
-
+                            $scope.randomValue = -999;
+                            $scope.qty = 20;
+                            $scope.cost = 1.78;
                             $interval(function(){
-                                console.log(arguments);
-                                $scope.randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
-                            }, 2000, 10);
+                                $scope.randomValue = Math.round(Math.random() * 100000);
+                            }, 1000, 20);
                         }
                     ]
         );
