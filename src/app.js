@@ -8,7 +8,10 @@
                     [
                         "$scope"
                         ,function($scope) {
-                            console.log("Hello Angular !!");
+                            $scope.message = "Hello";
+                            $scope.sayHello = function(name){
+                                return $scope.message + " " + name;
+                            }
                         }
                     ]
         );
