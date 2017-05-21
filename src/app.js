@@ -4,17 +4,35 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-        .controller("myController", 
+        .controller("parentController1",
                     [
                         "$scope"
-                        ,"$interval"
-                        ,function($scope, $interval) {
-                            $scope.randomValue = -999;
-                            $scope.qty = 20;
-                            $scope.cost = 1.78;
-                            $interval(function(){
-                                $scope.randomValue = Math.round(Math.random() * 100000);
-                            }, 1000, 20);
+                        ,function($scope) {
+                          $scope.name = "deepak";
+                        }
+                    ]
+        )
+        .controller("childController1",
+                    [
+                        "$scope",
+                        function($scope) {
+
+                        }
+                    ]
+        )
+        .controller("parentController2",
+                    [
+                        "$scope"
+                        ,function($scope) {
+                          $scope.model = {'name': "Sneha"};
+                        }
+                    ]
+        )
+        .controller("childController2",
+                    [
+                        "$scope",
+                        function($scope) {
+
                         }
                     ]
         );

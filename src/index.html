@@ -4,26 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Angular Expressions</title>
+    <title>Using dot notation for scope hierarchy problem</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
 </head>
-<body ng-controller="myController">
+<body class="container">
 
-    <p>Standard Expressions</p>
-    <p>Random Value: {{randomValue}}</p>
+  <div class="panel panel-danger" title="">
+    <div class="panel-heading">
+      Problem with binding to simple types in a controller. Try changing the value in the Input Field for in the child Controller. That creates a new variable inside the child controller scope and hence breaks the bindings between the parent and child.
+    </div>
+    <div class="panel-body" ng-controller="parentController1">
+      <section>
+        <h3>Parent Controller</h3>
+        <input type="text" ng-model="name">
+        Parent 1 Name : {{name}}
+      </section>
 
-    <p>Onetime Expressions</p>
-    <p>Random Value: {{::randomValue}}</p>
+      <div class="" ng-controller="childController1">
+        <section>
+          <h3>Child Controller</h3>
+          <input type="text" ng-model="name">
+          Child 1 Name : {{name}}
+        </section>
+      </div>
+    </div>
+  </div>
 
-    <p>Operation Expressions</p>
-    <p>Total Value: {{qty*cost}}</p>
+  <div class="panel panel-primary" title="">
+    <div class="panel-heading">
+      By putting your simple variable inside an object you are forcing angular not to create a new scope variable inside the child controller if it does not find the model there.
+    </div>
+    <div class="panel-body" ng-controller="parentController2">
+      <section>
+        <h3>Parent Controller</h3>
+        <input type="text" ng-model="model.name">
+        Parent 2 Name : {{model.name}}
+      </section>
 
-    <p>Logical Expressions</p>
-    <p>Random Value greater than 50000: {{randomValue > 50000}}</p>
+      <div class="" ng-controller="childController2">
+        <section>
+          <h3>Child Controller</h3>
+          <input type="text" ng-model="model.name">
+          Child 2 Name : {{model.name}}
+        </section>
+      </div>
+    </div>
+  </div>
 
-    <p>HTML Attribute Expressions</p>
-    <div style="background:#ff00dd; width: {{randomValue/100}}px">Dancing DIV</div>
-
-    
     <script type="text/javascript" src="../lib/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </body>
