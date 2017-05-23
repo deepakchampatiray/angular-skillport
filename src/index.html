@@ -4,63 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Using dot notation for scope hierarchy problem</title>
+    <title>Sharing data between controllers</title>
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
 </head>
 <body class="container">
 
   <div class="panel panel-danger" title="">
     <div class="panel-heading">
-      Problem with binding to simple types in a controller. Try changing the value in the Input Field for in the child Controller. That creates a new variable inside the child controller scope and hence breaks the bindings between the parent and child.
+      First Method : Use a parent controller that has the data in it and wrap it around both the child controllers that want to use the data.
     </div>
-    <div class="panel-body" ng-controller="parentController1">
-      <section>
-        <h3>Parent Controller</h3>
-        <input type="text" ng-model="name">
-        Parent 1 Name : {{name}}
+    <div class="panel-body" ng-controller="parentController">
+      <section ng-controller="controller1">
+        <h3>Controller 1</h3>
+        <input type="text" ng-model="model.name">
+        Controller 1 Name : {{model.name}}
       </section>
 
-      <div class="" ng-controller="childController1">
-        <section>
-          <h3>Child Controller</h3>
-          <input type="text" ng-model="name">
-          Child 1 Name : {{name}}
-        </section>
-      </div>
+      <section ng-controller="controller2">
+        <h3>Controller 2</h3>
+        <input type="text" ng-model="model.name">
+        Controller 2 Name : {{model.name}}
+      </section>
+
     </div>
   </div>
 
   <div class="panel panel-primary" title="">
     <div class="panel-heading">
-      By putting your simple variable inside an object you are forcing angular not to create a new scope variable inside the child controller if it does not find the model there.
+      Preffered Method : Use a service that has the model in it and inject the servive into both the controllers
     </div>
-    <div class="panel-body" ng-controller="parentController2">
-      <section>
-        <h3>Parent Controller</h3>
+    <div class="panel-body">
+      <section ng-controller="controller3">
+        <h3>Controller 3</h3>
         <input type="text" ng-model="model.name">
-        Parent 2 Name : {{model.name}}
+        Controller 3 Name : {{model.name}}
       </section>
 
-      <div class="" ng-controller="childController2">
-        <section>
-          <h3>Child Controller</h3>
-          <input type="text" ng-model="model.name">
-          Child 2 Name : {{model.name}}
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel panel-info" title="">
-    <div class="panel-heading">
-      An independent instance of parentController2.
-    </div>
-    <div class="panel-body" ng-controller="parentController2">
-      <section>
-        <h3>Parent Controller</h3>
+      <section ng-controller="controller4">
+        <h3>Controller 4</h3>
         <input type="text" ng-model="model.name">
-        Parent 1 Name : {{model.name}}
+        Controller 4 Name : {{model.name}}
       </section>
+
     </div>
   </div>
 
