@@ -4,51 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Using Custom View-Filters</title>
+    <title>Using orderBy and limitTo filters</title>
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
 </head>
 <body class="container">
   <div class="alert alert-info" role="alert">
     <b>
-      Using Angular you can create your own view filters that format the data in a way that is not available in the out-of-box angular filters.
+      "orderBy" and "limitTo" are one of the most used filters alongside ng-repeat.
     </b>
   </div>
-  <div class="panel panel-danger" title="">
-    <div class="panel-heading">
-      Value of the model variables without any filter.
-    </div>
-    <div class="panel-body" ng-controller="customerController as customer">
-      <div class="">
-        <label>Customer First Name :</label> {{customer.firstName}}
+  <div class="col-md-4">
+    <div class="panel panel-danger" title="">
+      <div class="panel-heading">
+        List of users without any filter or ordering applied.
       </div>
-      <div class="">
-        <label>Customer Last Name :</label> {{customer.lastName}}
-      </div>
-      <div class="">
-        <label>Customer Account Type :</label> {{customer.accountType}}
-      </div>
-      <div class="">
-        <label>Customer Account Balance :</label> {{customer.accountBalance}}
+      <div class="panel-body" ng-controller="usersController as users">
+        <div class="panel panel-default" ng-repeat="user in users.userList">
+          <div class="panel-body">
+            <div class="">
+              <label for="">User Name : </label> {{user.firstName}} {{user.lastName}}
+            </div>
+            <div class="">
+              <label for="">Email : </label> {{user.email}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="panel panel-primary" title="">
-    <div class="panel-heading">
-      Value of the model variables with filters applied.
+  <div class="col-md-4">
+    <div class="panel panel-primary" title="">
+      <div class="panel-heading">
+        List of users ordered by the lastName.
+      </div>
+      <div class="panel-body" ng-controller="usersController as users">
+        <div class="panel panel-default" ng-repeat="user in users.userList | orderBy : 'lastName'">
+          <div class="panel-body">
+            <div class="">
+              <label for="">User Name : </label> {{user.firstName}} {{user.lastName}}
+            </div>
+            <div class="">
+              <label for="">Email : </label> {{user.email}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="panel-body" ng-controller="customerController as customer">
-      <div class="">
-        <label>Customer First Name :</label> {{customer.firstName | capitalize}}
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-info" title="">
+      <div class="panel-heading">
+        List of 3rd to 7th users ordered by the lastName.
       </div>
-      <div class="">
-        <label>Customer Last Name :</label> {{customer.lastName | capitalize}}
-      </div>
-      <div class="">
-        <label>Customer Account Type :</label> {{customer.accountType | lowercase}}
-      </div>
-      <div class="">
-        <label>Customer Account Balance :</label> {{customer.accountBalance | currency}}
+      <div class="panel-body" ng-controller="usersController as users">
+        <div class="panel panel-default" ng-repeat="user in users.userList | orderBy : 'lastName' | limitTo : 5 : 2">
+          <div class="panel-body">
+            <div class="">
+              <label for="">User Name : </label> {{user.firstName}} {{user.lastName}}
+            </div>
+            <div class="">
+              <label for="">Email : </label> {{user.email}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
