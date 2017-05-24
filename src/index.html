@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Using Angular View Filters</title>
+    <title>Using Custom View-Filters</title>
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
 </head>
 <body class="container">
   <div class="alert alert-info" role="alert">
-    <b>Using the Angular view filters you can format the value on the "view" without changing the data on the model. This allows to keep a clear separation of concern between the model and view.</b>
+    <b>
+      Using Angular you can create your own view filters that format the data in a way that is not available in the out-of-box angular filters.
+    </b>
   </div>
   <div class="panel panel-danger" title="">
     <div class="panel-heading">
@@ -37,10 +39,10 @@
     </div>
     <div class="panel-body" ng-controller="customerController as customer">
       <div class="">
-        <label>Customer First Name :</label> {{customer.firstName | uppercase}}
+        <label>Customer First Name :</label> {{customer.firstName | capitalize}}
       </div>
       <div class="">
-        <label>Customer Last Name :</label> {{customer.lastName | uppercase}}
+        <label>Customer Last Name :</label> {{customer.lastName | capitalize}}
       </div>
       <div class="">
         <label>Customer Account Type :</label> {{customer.accountType | lowercase}}
