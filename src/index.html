@@ -4,74 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Using orderBy and limitTo filters</title>
+    <title>Using number and JSON filters</title>
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
 </head>
 <body class="container">
   <div class="alert alert-info" role="alert">
     <b>
-      "orderBy" and "limitTo" are one of the most used filters alongside ng-repeat.
+      You can use the "number" filter to display numbers (Integer and floats) in a format that confirms to the user locale. It can also round off the number to as many decimal places that you want.
+      <br/>
+      Using a "json" filter you can display raw JSON data in your controller on the view.
     </b>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-danger" title="">
+  <div class="col-md-6">
+    <div class="panel panel-danger" title="" ng-controller = "usersController as users">
       <div class="panel-heading">
-        List of users without any filter or ordering applied.
+        Number Filter
       </div>
-      <div class="panel-body" ng-controller="usersController as users">
-        <div class="panel panel-default" ng-repeat="user in users.userList">
-          <div class="panel-body">
-            <div class="">
-              <label for="">User Name : </label> {{user.firstName}} {{user.lastName}}
-            </div>
-            <div class="">
-              <label for="">Email : </label> {{user.email}}
-            </div>
-          </div>
+      <div class="panel-body">
+        <div>
+          <label for="">Unformatted Number : </label> {{users.num}}
+        </div>
+        <div>
+          <label for="">Default Formatted Number : </label> {{users.num | number}}
+        </div>
+        <div>
+          <label for="">Formatted Number, 2 decimal places : </label> {{users.num | number:2}}
+        </div>
+        <div>
+          <label for="">Formatted Number, no decimal places : </label> {{users.num | number:0}}
         </div>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="panel panel-primary" title="">
+  <div class="col-md-6">
+    <div class="panel panel-danger" title="" ng-controller = "usersController as users">
       <div class="panel-heading">
-        List of users ordered by the lastName.
+        JSON Filter
       </div>
-      <div class="panel-body" ng-controller="usersController as users">
-        <div class="panel panel-default" ng-repeat="user in users.userList | orderBy : 'lastName'">
-          <div class="panel-body">
-            <div class="">
-              <label for="">User Name : </label> {{user.firstName}} {{user.lastName}}
-            </div>
-            <div class="">
-              <label for="">Email : </label> {{user.email}}
-            </div>
-          </div>
-        </div>
+      <div class="panel-body">
+        <pre>
+          {{users.userList | json:2}}
+        </pre>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="panel panel-info" title="">
-      <div class="panel-heading">
-        List of 3rd to 7th users ordered by the lastName.
-      </div>
-      <div class="panel-body" ng-controller="usersController as users">
-        <div class="panel panel-default" ng-repeat="user in users.userList | orderBy : 'lastName' | limitTo : 5 : 2">
-          <div class="panel-body">
-            <div class="">
-              <label for="">User Name : </label> {{user.firstName}} {{user.lastName}}
-            </div>
-            <div class="">
-              <label for="">Email : </label> {{user.email}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
     <script type="text/javascript" src="../lib/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>
