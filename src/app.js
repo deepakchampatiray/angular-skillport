@@ -12,6 +12,11 @@
           "lastName": "Anderson",
           "favoriteLanguage" : "Javascript",
           "isBusy" : null
+        };
+
+        this.validateForm = function(form) {
+          console.log("validate");
+          alert("Form is valid : " + form.$valid);
         }
       }
     ])
@@ -24,5 +29,6 @@
         else
           return 'unknown';
       }
-    });
+    })
+    .filter("prettyJSON", () => json => JSON.stringify(json, null, " "));
 })();

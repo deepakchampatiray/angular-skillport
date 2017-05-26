@@ -4,66 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Examning User Input</title>
+    <title>Angular Form Validation</title>
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 <body class="container"  ng-controller = "usersController as model">
   <div class="alert alert-info" role="alert">
     <b>
-      Using ng-model, ng-options and custom filters to collect user data.
+      Angular form validation using built-in directives like ng-pattern and ng-required.
     </b>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-danger" title="">
+    <div class="panel" ng-class="{'panel-success': userForm.$valid, 'panel-danger': !userForm.$valid}" title="">
       <div class="panel-heading">
-        User Model Values
+        User Form
       </div>
       <div class="panel-body">
-        <div>
-          <label for="">First Name : </label> {{model.user.firstName}}
-        </div>
-        <div>
-          <label for="">Last Name : </label> {{model.user.lastName}}
-        </div>
-        <div>
-          <label for="">Favorite Language : </label> {{model.user.favoriteLanguage}}
-        </div>
-        <div>
-          <label for="">Is Busy? : </label> {{model.user.isBusy | yesorno}}
-        </div>
+        <form class="" name="userForm" action="index.html" method="post">
+          <fieldset>
+            <div class="col col-md-12">
+              <label for="">Name</label>
+            </div>
+            <div class="col col-md-6">
+              <input type="text" class="col col-md-6" ng-model="model.user.firstName" ng-required="true">
+            </div>
+            <div class="col col-md-6">
+              <input type="text" class="col col-md-6" ng-model="model.user.lastName" ng-required="true">
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="col col-md-12">
+              <label for="">Favorite Language</label>
+            </div>
+            <div class="col col-md-12">
+              <select ng-model="model.user.favoriteLanguage" ng-options="lang for lang in model.languages"></select>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="col col-md-12">
+              <label for="">Is Busy ?</label>
+            </div>
+            <div class="col col-md-12">
+              <input type="checkbox" ng-model="model.user.isBusy"> {{model.user.isBusy | yesorno}}
+            </div>
+          </fieldset>
+          <br>
+          <button ng-disabled="!userForm.$valid" type="button" ng-click="model.validateForm(userForm)" class="btn btn-primary col col-md-6">Submit</button>
+        </form>
       </div>
     </div>
   </div>
 
   <div class="col-md-6">
-    <div class="panel panel-primary" title="">
+    <div class="panel panel-info" title="">
       <div class="panel-heading">
-        User Form
+        User Model
       </div>
       <div class="panel-body">
-        <div>
-          <label for="">First Name : </label>
-          <input type="text" ng-model="model.user.firstName" />
-        </div>
-        <div>
-          <label for="">Last Name : </label>
-          <input type="text" ng-model="model.user.lastName" />
-        </div>
-        <div>
-          <label for="">Favorite Language : </label>
-          <select ng-model="model.user.favoriteLanguage" ng-options="lang.toUpperCase() for lang in model.languages">
-
-          </select>
-        </div>
-        <div class="form-check">
-          <label for="">Is Busy? : </label>
-          <input type="checkbox" ng-model="model.user.isBusy" />
-        </div>
-        <div class="form-check">
-          <label for="">Is Busy? (Using Radio buttons): </label>
-          <input type="radio" ng-model="model.user.isBusy" ng-value="true" /> Yes
-          <input type="radio" ng-model="model.user.isBusy" ng-value="false" /> No
-        </div>
+        <pre>
+          {{model.user | prettyJSON}}
+        </pre>
       </div>
     </div>
   </div>
