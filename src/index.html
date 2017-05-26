@@ -4,48 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Using number and JSON filters</title>
+    <title>Using date filters</title>
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
 </head>
 <body class="container">
   <div class="alert alert-info" role="alert">
     <b>
-      You can use the "number" filter to display numbers (Integer and floats) in a format that confirms to the user locale. It can also round off the number to as many decimal places that you want.
-      <br/>
-      Using a "json" filter you can display raw JSON data in your controller on the view.
+      "date" filter is used to format the date as per the requirements.
     </b>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-danger" title="" ng-controller = "usersController as users">
+    <div class="panel panel-danger" title="" ng-controller = "usersController as model">
       <div class="panel-heading">
-        Number Filter
+        Date Filter
       </div>
       <div class="panel-body">
         <div>
-          <label for="">Unformatted Number : </label> {{users.num}}
+          <label for="">First Name : </label> {{model.user.firstName}}
         </div>
         <div>
-          <label for="">Default Formatted Number : </label> {{users.num | number}}
+          <label for="">Last Name : </label> {{model.user.lastName}}
         </div>
         <div>
-          <label for="">Formatted Number, 2 decimal places : </label> {{users.num | number:2}}
+          <label for="">Date of birth (unformatted) : </label> {{model.user.birthDate}}
         </div>
         <div>
-          <label for="">Formatted Number, no decimal places : </label> {{users.num | number:0}}
+          <label for="">Date of birth (no format specified) : </label> {{model.user.birthDate | date}}
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="panel panel-danger" title="" ng-controller = "usersController as users">
-      <div class="panel-heading">
-        JSON Filter
-      </div>
-      <div class="panel-body">
-        <pre>
-          {{users.userList | json:2}}
-        </pre>
+        <div>
+          <label for="">Date of birth ('short' format) : </label> {{model.user.birthDate | date:'short'}}
+        </div>
+        <div>
+          <label for="">Date of birth (custom format) : </label> {{model.user.birthDate | date:'yyyy-MM-dd HH:mm:ss'}}
+        </div>
       </div>
     </div>
   </div>
