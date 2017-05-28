@@ -1,84 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Angular Form Validation</title>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="../lib/angular-material.min.css">
+  <link rel="stylesheet" href="./css/app.css">
+  <title>Using angular css classes</title>
 </head>
-<body class="container"  ng-controller = "usersController as model">
-  <div class="alert alert-info" role="alert">
-    <b>
-      Angular form validation using built-in directives like ng-pattern and ng-required.
-    </b>
-  </div>
-  <div class="col-md-6">
-    <div class="panel" ng-class="{'panel-success': userForm.$valid, 'panel-danger': !userForm.$valid}" title="">
-      <div class="panel-heading">
-        User Form
-      </div>
-      <div class="panel-body">
-        <form class="" name="userForm" action="index.html" method="post">
-          <fieldset>
-            <div class="col col-md-12">
-              <label for="">Name</label>
-            </div>
-            <div class="col col-md-6">
-              <input type="text" class="col col-md-6" ng-model="model.user.firstName" ng-required="true">
-            </div>
-            <div class="col col-md-6">
-              <input type="text" class="col col-md-6" ng-model="model.user.lastName" ng-required="true">
-            </div>
-          </fieldset>
-          <fieldset>
-            <div class="col col-md-12">
-              <label for="">Favorite Language</label>
-            </div>
-            <div class="col col-md-12">
-              <select ng-model="model.user.favoriteLanguage" ng-options="lang for lang in model.languages"></select>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div class="col col-md-12">
-              <label for="">Is Busy ?</label>
-            </div>
-            <div class="col col-md-12">
-              <input type="checkbox" ng-model="model.user.isBusy"> {{model.user.isBusy | yesorno}}
-            </div>
-          </fieldset>
-          <br>
-          <button ng-disabled="!userForm.$valid" type="button" ng-click="model.validateForm(userForm)" class="btn btn-primary col col-md-6">Submit</button>
-        </form>
-      </div>
+<body ng-app="myApp" ng-cloak ng-controller="usersController as model">
+
+  <!-- <div ng-controller="usersController as model" layout-padding layout-xs="column" layout-gt-sm="row" layout-wrap>
+    <div class="" flex="50" flex-xs="100">
+      <md-input-container class="md-block">
+        <label>First Name</label>
+        <input type="text" ng-model="model.user.firstName" required md-maxlength="10">
+      </md-input-container>
     </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="panel panel-info" title="">
-      <div class="panel-heading">
-        User Model
-      </div>
-      <div class="panel-body">
-        <pre>
-          {{model.user | prettyJSON}}
-        </pre>
-      </div>
+    <div class="" flex="50" flex-xs="100">
+      <md-input-container class="md-block">
+        <label>Last Name</label>
+        <input type="text" ng-model="model.user.lastName" required md-maxlength="10">
+      </md-input-container>
     </div>
+    <div class="" flex="50" flex-xs="100">
+      <md-input-container class="md-block">
+        <label>Favorite Langualge</label>
+        <md-select ng-model="model.user.favoriteLanguage" placeholder="Select your favorite language">
+          <md-option ng-value="opt" ng-repeat="opt in model.languages">{{ opt }}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+
+    <div class="" flex="50" flex-xs="100">
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="model.user.isBusy" class="md-block">
+          Is Busy?
+        </md-checkbox>
+      </md-input-container>
+    </div> -->
+    <label for="">First Name</label>
+    <input type="text" ng-model="model.user.firstName" ng-required="true">
+
   </div>
 
+  <!-- Angular Libraries -->
+  <script src="../lib/angular.js"></script>
+  <script src="../lib/angular-animate.min.js"></script>
+  <script src="../lib/angular-aria.min.js"></script>
+  <script src="../lib/angular-messages.min.js"></script>
 
-    <script type="text/javascript" src="../lib/angular.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript">
-      document.querySelectorAll('input[type="text"], select').forEach(function(elem){
-        angular.element(elem).addClass('form-control');
-      });
-      document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function(elem){
-        angular.element(elem).addClass('form-check-input');
-      });
+  <!-- Angular Material Library -->
+  <script src="../lib/angular-material.min.js"></script>
 
-    </script>
+  <!-- My Own Libraries -->
+  <script src="./app.js" type="text/javascript"></script>
 </body>
 </html>

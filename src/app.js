@@ -1,9 +1,13 @@
 "use strict";
 
 (function() {
-    angular.module("myApp", []);
+    angular.module("myApp", ['ngMaterial']);
 
     angular.module("myApp")
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('green');
+    })
     .controller("usersController", [
       function(){
         this.languages = ['Java', 'C++', 'python', 'C#', 'Go', 'Ruby', 'Javascript']
