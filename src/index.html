@@ -3,78 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="../lib/angular-material.min.css">
   <link rel="stylesheet" href="./css/app.css">
-  <title>Filtering output with angular</title>
+  <title>Using angular watchers</title>
 </head>
-<body ng-app="myApp" ng-cloak ng-controller="usersController as model" layout="row" layout-sm="column" layout-wrap layout-padding>
-
-  <div flex="30" layout="column">
-    <md-toolbar class="md-warn" ng-if="true">
-      <div class="md-toolbar-tools">
-        <h3>
-          <span>Person Filter</span>
-        </h3>
-      </div>
-    </md-toolbar>
-    <md-input-container>
-      <label>First Name</label>
-      <input type="text" ng-model="model.selectedPerson.firstName" md-maxlength="100">
-    </md-input-container>
-    <md-input-container>
-      <label>Last Name</label>
-      <input type="text" ng-model="model.selectedPerson.lastName" md-maxlength="100">
-    </md-input-container>
-    <!-- <md-input-container>
-      <label>Date of Birth</label>
-      <md-datepicker ng-model="model.selectedPerson.birthDate" width="90%">Date of Birth</md-datepicker>
-    </md-input-container> -->
-    <md-input-container>
-      <label>City</label>
-      <md-select ng-model="model.selectedPerson.city">
-        <md-option ng-value="">All</md-option>
-        <md-option ng-value="opt.city" ng-repeat="opt in model.personList">{{ opt.city }}</md-option>
-      </md-select>
-      <!-- <input type="text" ng-model="model.selectedPerson.city" md-maxlength="100"> -->
-    </md-input-container>
-    <md-input-container>
-      <label>State</label>
-      <md-select ng-model="model.selectedPerson.state">
-        <md-option ng-value="">All</md-option>
-        <md-option ng-value="opt.state" ng-repeat="opt in model.personList">{{ opt.state }}</md-option>
-      </md-select>
-    </md-input-container>
-  </div>
-  <div flex="70" layout="column">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h3>
-          <span>List of Persons</span>
-        </h3>
-      </div>
-    </md-toolbar>
-    <md-content>
-      <md-list>
-        <md-list-item class="md-3-line md-warn" ng-repeat="person in model.personList | filter:model.selectedPerson" ng-click="null">
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ person.firstName }} {{ person.lastName }}</h3>
-            <h4>{{ person.birthDate | date:'short' }} </h4>
-            <p>{{ person.city}}, {{ person.state }}</p>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
-  </div>
-
+<body ng-app="myApp" ng-cloak ng-controller="usersController as model">
+  <p>
+    <label for=""> Please enter the secret code :</label>
+    <input type="text" ng-model="model.code" /> ("SecretCode")
+  </p>
+  <p>
+    <label for="">Message : </label> {{model.message}}
+  </p>
   <!-- Angular Libraries -->
   <script src="../lib/angular.js"></script>
-  <script src="../lib/angular-animate.min.js"></script>
-  <script src="../lib/angular-aria.min.js"></script>
-  <script src="../lib/angular-messages.min.js"></script>
-
-  <!-- Angular Material Library -->
-  <script src="../lib/angular-material.min.js"></script>
 
   <!-- My Own Libraries -->
   <script src="./app.js" type="text/javascript"></script>
