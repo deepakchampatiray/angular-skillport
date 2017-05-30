@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
-  <title>Handling multiple promises</title>
+  <title>Using Iterators in Angular</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak ng-controller="usersController as model">
   <h2>
-    Promise in angular is an object which simplifies asyncronous calls.
+    Angular provides a forEach method that can be used to iterate through each object/variable in an array.
   </h2>
 
   <div class="row">
@@ -20,22 +20,14 @@
       </pre>
     </div>
     <div class="col col-md-5 col-md-offset-2 columns">
-      <p>
-        <label for="">User Id</label>
-        <input type="number" ng-model="model.userId" />
-        <button type="button" ng-click="model.fetchRecord()">Fetch Record</button>
-      </p>
-      <hr>
-      <p>
-        <h4>{{model.message}}</h4>
-        <label for="">First Name : </label>{{model.firstName}} <br>
-        <label for="">Last Name : </label>{{model.lastName}}
-
-        <p>
-          <label for="">Travel History :</label>
-          <span ng-repeat="hist in model.history">{{hist.country}} </span>
-        </p>
-      </p>
+      <ol>
+        <li ng-repeat="traveller in model.travelHistory">
+          <ul>
+            <li>{{traveller.firstName}} {{traveller.lastName}}</li>
+            <li>{{model.countries(traveller.travelHistory)}}</li>
+          </ul>
+        </li>
+      </ol>
     </div>
   </div>
   <!-- Angular Libraries -->
