@@ -1,7 +1,4 @@
-/*input.ng-dirty.ng-invalid {
-  background-color: #ffddcc;
+div.columns {
+  padding : 10px;
+  border : 2px solid orangered;
 }
-
-input.ng-dirty.ng-valid {
-  background-color: #88ffcc;
-}*/
