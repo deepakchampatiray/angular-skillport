@@ -1,0 +1,15 @@
+<!-- <div class="card my-3"> -->
+  <div class="card-header bg-muted">
+    <span class="badge badge-primary float-right">{{$index + 1}}</span>
+    <h4>{{task.taskTitle}}</h4>
+    <h6 class="text-danger">
+      Due date : {{task.dueDate | toDate | date:'MMM dd'}}
+    </h6>
+  </div>
+
+  <div class="card-block">
+    <p class="card-text">
+      {{task.taskDetails | wrapFilter:vm.isShortFormat}}
+    </p>
+  </div>
+<!-- </div> -->
