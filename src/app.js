@@ -4,17 +4,20 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("usersController", [
+    .controller("capitalizeController", [
       function(){
           var vm = this;
-          vm.obj = {
-            "firstName": "Deepak",
-            "lastName" : "Champatiray",
-            "age" : 32,
-            "today" : new Date()
-          }
-          vm.ang = angular;
+          vm.userText = null;
+          vm.capitalizedText = "";
+          vm.capitalize = () => {
+            vm.capitalizedText = vm.userText
+          };
       }
     ])
+    .filter("capitalize", function() {
+        return function(str) {
+          return str.split(" ").map(word => word.substring(0,1).toUpperCase()+word.substring(1)).join(" ");
+        }
+    });
 
     })();

@@ -5,37 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
-  <title>Validating datatypes in angular</title>
+  <title>Course Assignment 1</title>
 </head>
-<body ng-app="myApp" class="container" ng-cloak ng-controller="usersController as model">
-  <h2>
-    Angular provides various methods that can be used to determine the datatype of a variable.
-    <pre>
-    angular.isArray
-    angular.isDate
-    angular.isDefined
-    angular.isElement
-    angular.isFunction
-    angular.isNumber
-    angular.isObject
-    angular.isString
-    angular.isUndefined
-    </pre>
-  </h2>
-
-  <div class="row">
-    <div class="col col-md-12 well">
-      <p>angular.isArray : {{model.ang.isArray(model.obj)}}</p>
-      <p>angular.isDate  : {{model.obj.today}} - {{model.ang.isDate(model.obj.today)}}</p>
-      <p>angular.isDefined : {{model.ang.isDefined(model.obj)}}</p>
-      <p>angular.isElement : {{model.ang.isElement(model.obj)}}</p>
-      <p>angular.isFunction : {{model.ang.isFunction(model.ang.isFunction)}}</p>
-      <p>angular.isNumber : {{model.ang.isNumber(model.obj.age)}}</p>
-      <p>angular.isObject : {{model.ang.isObject(model.obj)}}</p>
-      <p>angular.isString : {{model.ang.isString(model.obj)}}</p>
-      <p>angular.isUndefined : {{model.ang.isUndefined(model.obj)}}</p>
+<body ng-app="myApp" class="container" ng-cloak>
+  <div class="col col-sm-6">
+    <div class="card" ng-controller="capitalizeController as model">
+      <h4 class="card-header bg-muted">"Capitalize" display Filter</h4>
+      <div class="card-block">
+        <p class="card-text">
+          <form class="form">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label"><strong>User Text</strong></label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" placeholder="Enter text to capitalize" ng-model="model.userText" />
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-warning" ng-click="model.capitalize()">Capitalize</button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <strong>Capitalized Text</strong>
+              </div>
+              <div class="col-sm-8">
+                {{model.capitalizedText | capitalize}}
+              </div>
+            </div>
+          </form>
+        </p>
+      </div>
     </div>
   </div>
+
   <!-- Angular Libraries -->
   <script src="../lib/angular.js"></script>
 
