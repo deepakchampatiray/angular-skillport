@@ -5,29 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
-  <title>Using Iterators in Angular</title>
+  <title>Validating datatypes in angular</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak ng-controller="usersController as model">
   <h2>
-    Angular provides a forEach method that can be used to iterate through each object/variable in an array.
+    Angular provides various methods that can be used to determine the datatype of a variable.
+    <pre>
+    angular.isArray
+    angular.isDate
+    angular.isDefined
+    angular.isElement
+    angular.isFunction
+    angular.isNumber
+    angular.isObject
+    angular.isString
+    angular.isUndefined
+    </pre>
   </h2>
 
   <div class="row">
-    <div class="col col-md-5 columns">
-      <h3>Travel History</h3>
-      <pre>
-        {{model.travelHistory | json | JSONBeautify}}
-      </pre>
-    </div>
-    <div class="col col-md-5 col-md-offset-2 columns">
-      <ol>
-        <li ng-repeat="traveller in model.travelHistory">
-          <ul>
-            <li>{{traveller.firstName}} {{traveller.lastName}}</li>
-            <li>{{model.countries(traveller.travelHistory)}}</li>
-          </ul>
-        </li>
-      </ol>
+    <div class="col col-md-12 well">
+      <p>angular.isArray : {{model.ang.isArray(model.obj)}}</p>
+      <p>angular.isDate  : {{model.obj.today}} - {{model.ang.isDate(model.obj.today)}}</p>
+      <p>angular.isDefined : {{model.ang.isDefined(model.obj)}}</p>
+      <p>angular.isElement : {{model.ang.isElement(model.obj)}}</p>
+      <p>angular.isFunction : {{model.ang.isFunction(model.ang.isFunction)}}</p>
+      <p>angular.isNumber : {{model.ang.isNumber(model.obj.age)}}</p>
+      <p>angular.isObject : {{model.ang.isObject(model.obj)}}</p>
+      <p>angular.isString : {{model.ang.isString(model.obj)}}</p>
+      <p>angular.isUndefined : {{model.ang.isUndefined(model.obj)}}</p>
     </div>
   </div>
   <!-- Angular Libraries -->
