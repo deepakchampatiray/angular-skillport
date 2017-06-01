@@ -1,4 +1,9 @@
-div.columns {
-  padding : 10px;
-  border : 2px solid orangered;
+div.card.image-card {
+  overflow: hidden;
+}
+div.card img.card-img-top {
+  transition: all 1s ease;
+}
+div.card img.card-img-top:hover {
+  transform: scale(1.1)
 }
