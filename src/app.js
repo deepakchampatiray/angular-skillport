@@ -4,43 +4,46 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("numberController", [
+    .controller("stockController", [
       function(){
           var vm = this;
-          vm.randomNumberGenerator = function(count){
-            //console.log(count);
-            count = count || 10;
-            var items = [];
-            for(var i=0; i<count; i++){
-              items.push(Math.ceil(Math.random()*1000));
+          vm.cars = [
+            {
+              make : 'Tesla',
+              model : 'S',
+              year : 2015,
+              miles : 17000,
+              features : {
+                engine : 'Electric Drive',
+                power : '400 bhp',
+              },
+              price : 32000
+            },
+            {
+              make : 'Tesla',
+              model : 'T',
+              year : 2014,
+              miles : 27000,
+              features : {
+                engine : 'Electric Drive',
+                power : '500 bhp',
+              },
+              price : 42000
             }
-            return items;
-          }
-
-          vm.sequentialNumberGenerator = function(count){
-            count = count || 10;
-            var items = [];
-            for(var i=0; i<count; i++){
-              items.push(i + 1);
-            }
-            return items;
-          }
+          ];
       }
     ])
-    .directive("dcrNumberGenerator", function(){
+    .directive("dcrCarDetails", function(){
       return {
         scope : {
-          numberGenerator : "&",
-          count : "=?"
+          make : '@',
+          model : '@',
+          year : '@',
+          miles : '@',
+          features : '@'
         },
         restrict : 'EA',
-        templateUrl : "templates/dcrNumberGenerator.html",
-        controller : function($scope) {
-          //console.log("In controller", $scope, $scope.count, $scope.numberGenerator);
-          if($scope.numberGenerator) {
-            $scope.numbers = $scope.numberGenerator({'count':$scope.count});
-          }
-        }
+        templateUrl : "templates/dcrCarDetails.html"
       }
     })
 })();
