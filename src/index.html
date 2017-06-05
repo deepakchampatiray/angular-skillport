@@ -6,33 +6,20 @@
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
-  <title>Examning isolate scope directives</title>
+  <title>Accessing Outer scope functions</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
-  <div class="row card-deck">
+  <div class="row d-flex flex-column">
       <div class="card">
-        <div class="card-header bg-danger text-white">
-          Accessing the controller's data directly from the directive
+        <div class="card-header bg-info text-white">
+          You can pass functions to your custom directive, which helps the same directive perform different tasks.
         </div>
-        <div class="card-block" ng-controller="carController">
-          <dcr-car></dcr-car>
-        </div>
-        <div class="card-footer">
-          This is not ideal as this prevents reusability of the directive across controllers because of the tight coupling between the controller's data model and the directive's scope (used in the template).
+        <div class="card-block" ng-controller="numberController as vm">
+          Random Numbers : <div dcr-number-generator number-generator="vm.randomNumberGenerator(count)" count="5"></div>
+          Sequential Numbers : <dcr-number-generator number-generator="vm.sequentialNumberGenerator(count)" count="7"></dcr-number-generator>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header bg-primary text-white">
-          Accessing the controller's data through its own isolate scope
-        </div>
-        <div class="card-block" ng-controller="carController">
-          <dcr-car-isolate car="model3"></dcr-car-isolate>
-          <dcr-car-isolate car="modelT"></dcr-car-isolate>
-        </div>
-        <div class="card-footer">
-          This is ideal as this decouples the scope of the controller and the directive. Hence the same directive can be used across multiple controllers.
-        </div>
-      </div>
+
   </div>
 
 

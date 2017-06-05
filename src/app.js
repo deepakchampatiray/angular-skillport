@@ -4,41 +4,43 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("carController", ['$scope',
-      function($scope){
-          $scope.car = {
-            name : 'Tesla',
-            model : 'Model S',
-            make : 2017,
-            type : 'Electric'
+    .controller("numberController", [
+      function(){
+          var vm = this;
+          vm.randomNumberGenerator = function(count){
+            //console.log(count);
+            count = count || 10;
+            var items = [];
+            for(var i=0; i<count; i++){
+              items.push(Math.ceil(Math.random()*1000));
+            }
+            return items;
           }
 
-          $scope.model3 = {
-            name : 'Tesla',
-            model : 'Model 3',
-            make : 2018,
-            type : 'Electric'
-          }
-
-          $scope.modelT = {
-            name : 'Tesla',
-            model : 'Model T',
-            make : 2017,
-            type : 'Electric SUV'
+          vm.sequentialNumberGenerator = function(count){
+            count = count || 10;
+            var items = [];
+            for(var i=0; i<count; i++){
+              items.push(i + 1);
+            }
+            return items;
           }
       }
     ])
-    .directive('dcrCar', function() {
-      return {
-        'templateUrl' : "templates/dcrCar.html"
-      }
-    })
-    .directive("dcrCarIsolate", function(){
+    .directive("dcrNumberGenerator", function(){
       return {
         scope : {
-          car : "="
+          numberGenerator : "&",
+          count : "=?"
         },
-        templateUrl : "templates/dcrCar.html"
+        restrict : 'EA',
+        templateUrl : "templates/dcrNumberGenerator.html",
+        controller : function($scope) {
+          //console.log("In controller", $scope, $scope.count, $scope.numberGenerator);
+          if($scope.numberGenerator) {
+            $scope.numbers = $scope.numberGenerator({'count':$scope.count});
+          }
+        }
       }
     })
 })();
