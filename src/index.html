@@ -6,20 +6,17 @@
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
-  <title>Attaching strings to isolate scope</title>
+  <title>Replacing Directive Elements</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
       <div class="card">
-        <div class="card-header bg-info text-white">
-          You can have a one-way binding within a directive's isolate scope by using the '@' symbol. This implicitly converts the variable (string, number, Object) that is bound into a string.
+        <div class="card-header bg-danger text-white">
+          When using the "Element" method of injecting a custom directive into a HTML page, you can use the "replace" attribute to replace the directive's custom tag with valid HTML tags.
         </div>
         <div class="card-block" ng-controller="stockController as vm">
           <div ng-repeat="car in vm.cars">
             <dcr-car-details make="{{car.make}}" model="{{car.model}}" year="{{car.year}}" miles="{{car.miles}}" features="{{car.features}}"></dcr-car-details>
-          </div>
-          <div ng-repeat="car in vm.cars">
-            {{car.make}}, {{car.model}}, <input type="text" ng-model="car.miles">
           </div>
         </div>
       </div>

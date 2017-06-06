@@ -42,6 +42,7 @@
           miles : '@',
           features : '@'
         },
+        replace: true,
         restrict : 'EA',
         templateUrl : "templates/dcrCarDetails.html"
       }
