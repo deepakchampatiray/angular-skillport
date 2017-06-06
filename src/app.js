@@ -36,15 +36,24 @@
     .directive("dcrCarDetails", function(){
       return {
         scope : {
-          make : '@',
-          model : '@',
-          year : '@',
-          miles : '@',
-          features : '@'
+          car : "="
         },
         replace: true,
         restrict : 'EA',
-        templateUrl : "templates/dcrCarDetails.html"
+        templateUrl : "templates/dcrCar.html",
+        controller : function($scope) {
+          $scope.isUpdating = false;
+          $scope.message = '';
+          $scope.saveUpdate = function() {
+            $scope.message = "Updated prices of the car.";
+            $scope.isUpdating = false;
+          }
+          $scope.showUpdate = function() {
+            //console.log("show updating");
+            $scope.message = "";
+            $scope.isUpdating = true;
+          }
+        }
       }
     })
 })();

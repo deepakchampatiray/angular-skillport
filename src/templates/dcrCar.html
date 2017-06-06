@@ -1,3 +1,15 @@
-<p>Car Manufacturer : {{car.name}}</p>
-<p>Model : {{car.model}}</p>
-<p>Year of manufacture : {{car.make}}</p>
+<div>
+  <p>Car Manufacturer : {{car.make}}</p>
+  <p>Model : {{car.model}}</p>
+  <p>Year of manufacture : {{car.make}}</p>
+  <p>Price :
+    <span ng-show="!isUpdating">
+      {{car.price}}
+      <span><button type="button" ng-click="showUpdate()">Update Price</button></span>
+    </span>
+    <span ng-show="isUpdating">
+      <input type="text" ng-model="car.price">
+      <button type="button" ng-click="saveUpdate()">Save</button>
+    </span>
+  </p>
+</div>
