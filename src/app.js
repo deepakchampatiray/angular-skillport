@@ -4,56 +4,57 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("stockController", [
+    .controller("animalController", [
       function(){
           var vm = this;
-          vm.cars = [
-            {
-              make : 'Tesla',
-              model : 'S',
-              year : 2015,
-              miles : 17000,
-              features : {
-                engine : 'Electric Drive',
-                power : '400 bhp',
-              },
-              price : 32000
-            },
-            {
-              make : 'Tesla',
-              model : 'T',
-              year : 2014,
-              miles : 27000,
-              features : {
-                engine : 'Electric Drive',
-                power : '500 bhp',
-              },
-              price : 42000
-            }
-          ];
+          vm.bird = {
+            name : 'bird'
+          };
+          vm.horse = {
+            name :'horse'
+          }
+          vm.snake = {
+            name : 'snake'
+          }
       }
     ])
-    .directive("dcrCarDetails", function(){
+    .controller("birdController", ['$scope',
+      function($scope) {
+        $scope.state = "perching";
+        $scope.move = function(){
+          $scope.state = "flying";
+          $scope.animal.name = $scope.state + " " + $scope.animal.name;
+        }
+      }
+    ])
+    .controller("horseController", ['$scope',
+      function($scope) {
+        $scope.state = "resting";
+        $scope.move = function(){
+          $scope.state = "galloping";
+          $scope.animal.name = $scope.state + " " + $scope.animal.name;
+        }
+      }
+    ])
+    .controller("snakeController", ['$scope',
+      function($scope) {
+        $scope.state = "sleeping";
+        $scope.move = function(){
+          $scope.state = "slithering";
+          $scope.animal.name = $scope.state + " " + $scope.animal.name;
+        }
+      }
+    ])
+    .directive("dcrAnimal", function(){
       return {
         scope : {
-          car : "="
+          animal : '='
         },
         replace: true,
         restrict : 'EA',
-        templateUrl : "templates/dcrCar.html",
-        controller : function($scope) {
-          $scope.isUpdating = false;
-          $scope.message = '';
-          $scope.saveUpdate = function() {
-            $scope.message = "Updated prices of the car.";
-            $scope.isUpdating = false;
-          }
-          $scope.showUpdate = function() {
-            //console.log("show updating");
-            $scope.message = "";
-            $scope.isUpdating = true;
-          }
-        }
+        templateUrl : "templates/dcrAnimal.html",
+        controller : '@',
+        name : 'controllerName'
       }
     })
 })();
