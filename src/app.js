@@ -4,57 +4,44 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("animalController", [
+    .controller("userController", [
       function(){
           var vm = this;
-          vm.bird = {
-            name : 'bird'
-          };
-          vm.horse = {
-            name :'horse'
+          vm  .user = {
+            name : 'Deepak',
+            lastName : 'Champatiray',
+            address : {
+              flat : 'Apt A18-204',
+              complex : 'Megapolis Splendour',
+              locality : 'Hinjewadi Phase 3',
+              city : 'Pune'
+            }
           }
-          vm.snake = {
-            name : 'snake'
-          }
       }
     ])
-    .controller("birdController", ['$scope',
-      function($scope) {
-        $scope.state = "perching";
-        $scope.move = function(){
-          $scope.state = "flying";
-          $scope.animal.name = $scope.state + " " + $scope.animal.name;
-        }
-      }
-    ])
-    .controller("horseController", ['$scope',
-      function($scope) {
-        $scope.state = "resting";
-        $scope.move = function(){
-          $scope.state = "galloping";
-          $scope.animal.name = $scope.state + " " + $scope.animal.name;
-        }
-      }
-    ])
-    .controller("snakeController", ['$scope',
-      function($scope) {
-        $scope.state = "sleeping";
-        $scope.move = function(){
-          $scope.state = "slithering";
-          $scope.animal.name = $scope.state + " " + $scope.animal.name;
-        }
-      }
-    ])
-    .directive("dcrAnimal", function(){
+    .directive("dcrUser", function(){
       return {
         scope : {
-          animal : '='
+          user : "="
         },
-        replace: true,
-        restrict : 'EA',
-        templateUrl : "templates/dcrAnimal.html",
-        controller : '@',
-        name : 'controllerName'
+        templateUrl : 'templates/dcrUser.html'
+      }
+    })
+    .directive("dcrAddress", function() {
+      return {
+        scope : {
+          address : "="
+        },
+        templateUrl : 'templates/dcrAddress.html'
+      }
+    })
+    .directive("dcrUserTransclude", function(){
+      return {
+        scope : {
+          user : "="
+        },
+        transclude : true,
+        templateUrl : 'templates/dcrUserTransclude.html'
       }
     })
 })();

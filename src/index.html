@@ -6,28 +6,33 @@
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
-  <title>Dynamic controllers in directives</title>
+  <title>Using transclusion in directives</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
       <div class="card">
         <div class="card-header bg-primary text-white">
-          Dynamic controllers can be used to provide custom functionality to any directive at runtime.
+          Directives by default replace all the content inside the custom tag with the template that it is bound to. This is an undesirable behaviour if you want to nest one directive inside another one.
         </div>
-        <div class="card-block row" ng-controller="animalController as vm">
+        <div class="card-block row" ng-controller="userController as vm">
           <div class="card col">
+            <div class="card-header bg-danger text-white">
+              Notice how the address directive does not show up.
+            </div>
             <div class="card-block">
-              <dcr-animal animal="vm.bird" controller-name="birdController"></dcr-animal>
+              <dcr-user user="vm.user">
+                <dcr-address address="vm.user.address"></dcr-address>
+              </dcr-user>
             </div>
           </div>
           <div class="card col">
-            <div class="card-block">
-              <dcr-animal animal="vm.horse" controller-name="horseController"></dcr-animal>
+            <div class="card-header bg-info text-white">
+              Notice how the address directive do show up.
             </div>
-          </div>
-          <div class="card col">
             <div class="card-block">
-              <dcr-animal animal="vm.snake" controller-name="snakeController"></dcr-animal>
+              <dcr-user-transclude user="vm.user">
+                <dcr-address address="vm.user.address"></dcr-address>
+              </dcr-user>
             </div>
           </div>
         </div>
