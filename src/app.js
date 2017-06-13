@@ -4,23 +4,29 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("temperatureController", [
-      function(){
-          var vm = this;
-          vm.currentTemperature = 28;
-      }
-    ])
-    .directive("dcrTemperature", function(){
+    // .controller("temperatureController", [
+    //   function(){
+    //       var vm = this;
+    //       vm.currentTemperature = 28;
+    //   }
+    // ])
+    .directive("colorChangingSquare", function(){
       return {
         scope : {
-          temperature : '@'
+          size : '@'
         },
-        templateUrl : 'templates/dcrTemperature.html',
+        transclude : true,
+        replace : true,
+        templateUrl : 'templates/colorChangingSquare.html',
         link : function(scope, elem, attrs) {
-          scope.className = "";
-          attrs.$observe('temperature', function(newVal) {
-            var t = attrs.temperature;
-            scope.className = t<10?'bg-primary':(t>35?'bg-danger':'bg-success');
+          elem.on("mouseover", function(){
+            console.log("mouse over", elem);
+            elem.css("background-color", attrs.color);
+          });
+
+          elem.on("mouseout", function(){
+            console.log("mouse out");
+            elem.css("background-color", "");
           });
         }
       }

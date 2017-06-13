@@ -6,35 +6,31 @@
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
-  <title>Watching for changes in directive</title>
+  <title>Browser events for custom directives</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
       <div class="card">
         <div class="card-header bg-primary text-white">
-          Using the $observe method, you can watch for changes to your directives's attributes
+          Using the $on method, you can register for browser events on the elements created by a custom directive
         </div>
-        <div class="card-block row" ng-controller="temperatureController as vm">
+        <div class="card-block row">
           <div class="col">
             <div class="card">
               <div class="card-header bg-danger text-white">
-                Please input the current temeprature
+                Please hover over the underlying squares
               </div>
               <div class="card-block">
-                <input type="text" ng-model="vm.currentTemperature">
+                <color-changing-square size="200px" color="#F38">
+                  Some kind or Red square
+                </color-changing-square>
+                <color-changing-square size="350px" color="orangered">
+                  An orangered square
+                </color-changing-square>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card">
-              <div class="card-header bg-info text-white">
-                Notice how the colors change with varrying temperature.
-              </div>
-              <div class="card-block">
-                <div dcr-temperature temperature="{{vm.currentTemperature}}"></div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
 
