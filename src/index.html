@@ -6,33 +6,33 @@
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
-  <title>Using transclusion in directives</title>
+  <title>Watching for changes in directive</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
       <div class="card">
         <div class="card-header bg-primary text-white">
-          Directives by default replace all the content inside the custom tag with the template that it is bound to. This is an undesirable behaviour if you want to nest one directive inside another one.
+          Using the $observe method, you can watch for changes to your directives's attributes
         </div>
-        <div class="card-block row" ng-controller="userController as vm">
-          <div class="card col">
-            <div class="card-header bg-danger text-white">
-              Notice how the address directive does not show up.
-            </div>
-            <div class="card-block">
-              <dcr-user user="vm.user">
-                <dcr-address address="vm.user.address"></dcr-address>
-              </dcr-user>
+        <div class="card-block row" ng-controller="temperatureController as vm">
+          <div class="col">
+            <div class="card">
+              <div class="card-header bg-danger text-white">
+                Please input the current temeprature
+              </div>
+              <div class="card-block">
+                <input type="text" ng-model="vm.currentTemperature">
+              </div>
             </div>
           </div>
-          <div class="card col">
-            <div class="card-header bg-info text-white">
-              Notice how the address directive do show up.
-            </div>
-            <div class="card-block">
-              <dcr-user-transclude user="vm.user">
-                <dcr-address address="vm.user.address"></dcr-address>
-              </dcr-user>
+          <div class="col">
+            <div class="card">
+              <div class="card-header bg-info text-white">
+                Notice how the colors change with varrying temperature.
+              </div>
+              <div class="card-block">
+                <div dcr-temperature temperature="{{vm.currentTemperature}}"></div>
+              </div>
             </div>
           </div>
         </div>

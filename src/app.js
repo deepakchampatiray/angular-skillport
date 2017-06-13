@@ -4,44 +4,25 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("userController", [
+    .controller("temperatureController", [
       function(){
           var vm = this;
-          vm  .user = {
-            name : 'Deepak',
-            lastName : 'Champatiray',
-            address : {
-              flat : 'Apt A18-204',
-              complex : 'Megapolis Splendour',
-              locality : 'Hinjewadi Phase 3',
-              city : 'Pune'
-            }
-          }
+          vm.currentTemperature = 28;
       }
     ])
-    .directive("dcrUser", function(){
+    .directive("dcrTemperature", function(){
       return {
         scope : {
-          user : "="
+          temperature : '@'
         },
-        templateUrl : 'templates/dcrUser.html'
-      }
-    })
-    .directive("dcrAddress", function() {
-      return {
-        scope : {
-          address : "="
-        },
-        templateUrl : 'templates/dcrAddress.html'
-      }
-    })
-    .directive("dcrUserTransclude", function(){
-      return {
-        scope : {
-          user : "="
-        },
-        transclude : true,
-        templateUrl : 'templates/dcrUserTransclude.html'
+        templateUrl : 'templates/dcrTemperature.html',
+        link : function(scope, elem, attrs) {
+          scope.className = "";
+          attrs.$observe('temperature', function(newVal) {
+            var t = attrs.temperature;
+            scope.className = t<10?'bg-primary':(t>35?'bg-danger':'bg-success');
+          });
+        }
       }
     })
 })();
