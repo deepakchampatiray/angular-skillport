@@ -6,27 +6,55 @@
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
-  <title>Browser events for custom directives</title>
+  <title>Using the ng-list directive</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
       <div class="card">
         <div class="card-header bg-primary text-white">
-          Using the $on method, you can register for browser events on the elements created by a custom directive
+          Using the ng-list directive you can maintain an array data-structure using a simple text field.
         </div>
         <div class="card-block row">
           <div class="col">
             <div class="card">
               <div class="card-header bg-danger text-white">
-                Please hover over the underlying squares
+                See what happens to the type-of field as soon as we change anything on the text field.
               </div>
-              <div class="card-block">
-                <color-changing-square size="200px" color="#F38">
-                  Some kind or Red square
-                </color-changing-square>
-                <color-changing-square size="350px" color="orangered">
-                  An orangered square
-                </color-changing-square>
+              <div class="card-block" ng-controller="userController as vm">
+                <p>
+                  Users : <input type="text" ng-model="vm.users">
+                </p>
+                <p>
+                  Type of Users : {{vm.typeOf(vm.users)}}
+                </p>
+                <p>
+                  Count : {{vm.users.length}}
+                </p>
+                <p>
+                  First User : {{vm.users[0]}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                See what happens when we add the ng-list directive to the text-field.
+              </div>
+              <div class="card-block" ng-controller="userController as vm">
+                <p>
+                  Users : <input type="text" ng-list ng-model="vm.users">
+                </p>
+                <p>
+                  Type of Users : {{vm.typeOf(vm.users)}}
+                </p>
+                <p>
+                  Count : {{vm.users.length}}
+                </p>
+                <p>
+                  First User : {{vm.users[0]}}
+                </p>
               </div>
             </div>
           </div>
