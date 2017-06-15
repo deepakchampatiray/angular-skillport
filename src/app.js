@@ -7,9 +7,10 @@
     .controller("userController", [
       function(){
           var vm = this;
-          vm.users = ['Deepak', 'Sneha', 'Jitesh', 'Sunil'];
-          vm.typeOf = function(val) {
-            return typeof(val);
+          vm.user = {
+            name : 'Deepak Champatiray',
+            salary : 1027865.76,
+            dateOfBirth : 545666700000
           }
       }
     ]);
