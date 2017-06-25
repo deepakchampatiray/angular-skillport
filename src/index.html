@@ -7,16 +7,20 @@
   <link rel="stylesheet" href="./css/app.css">
   <link rel="stylesheet" href="./css/font-awesome.min.css">
 
-  <title>Using the $exceptionHandler</title>
+  <title>Using the $http service</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
-      <div class="card" ng-controller="errorController as vm">
+      <div class="card" ng-controller="timeController as vm">
         <div class="card-header bg-primary text-white">
-          $exceptionHandler gives us an override option to deal with exceptions that occur within an aglular application.
+          $http service allows you to do xhr calls.
         </div>
         <div class="card-block row">
-          <button class="btn btn-primary" ng-click="vm.throwError()">Click me to throw error</button>
+          <div>
+            <button class="btn btn-primary" ng-click="vm.timeFactory.getTime()">Get Server Time</button>
+            <hr>
+            Server Time : {{vm.timeFactory.currentTime | date:'medium'}}
+          </div>
         </div>
       </div>
 
