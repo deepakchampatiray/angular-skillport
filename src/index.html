@@ -5,28 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../lib/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
 
-  <title>Using the $timeout service</title>
+  <title>Using the $cacheFactory service</title>
 </head>
 <body ng-app="myApp" class="container" ng-cloak>
   <div class="row d-flex flex-column">
-      <div class="card">
+      <div class="card" ng-controller="cacheController as vm">
         <div class="card-header bg-primary text-white">
-          Using the $timeout service you can create timers in angular that fire after a given delay.
+          $cacheFactory service can ge used to create and manage client side cache for your application.
         </div>
         <div class="card-block row">
-          <div class="col">
+          <div class="col col-sm-6">
             <div class="card">
               <div class="card-header bg-default text-default">
-                Please set a timer value.
+                Add a new cache entry
               </div>
-              <div class="card-block" ng-controller="timerController as vm">
-                <div class="jumbotron bg-warning text-white p-4 m-2">
-                  <h1>{{vm.timerValue | timerFormatter}}</h1>
+              <div class="card-block">
+                <div class="form-group row">
+                  <label for="cacheKey" class="col-sm-4">Cache Key</label>
+                  <input type="text" id="cacheKey" class="col-sm-8 form-control" ng-model="vm.cacheKey">
                 </div>
-                <input type="text" class="form-control" ng-model="vm.timerValue">
-                <button class="btn btn-primary" ng-click="vm.startCountDown()">Start Countdown</button>
-                <button class="btn btn-danger" ng-click="vm.stopCountDown()">Stop Countdown</button>
+                <div class="form-group row">
+                  <label for="cacheValue" class="col-sm-4">Cache Value</label>
+                  <input type="text" id="cacheValue" class="col-sm-8 form-control" ng-model="vm.cacheValue">
+                </div>
+                <div class="form-group row">
+                  <button class="col-sm-12 btn btn-primary" ng-click="vm.addItem(vm.cacheKey, vm.cacheValue)">Add To Cache</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col col-sm-2">
+            <div class="card">
+              <div class="card-header">
+                Cache Keys
+              </div>
+              <div class="card-block">
+                <div class="list-group">
+                  <li ng-cloak class="list-group-item justify-content-between" ng-repeat="key in vm.keys" ng-click="vm.currentItem = vm.getItem(key)">
+                    <div>
+                      {{key}}
+                    </div>
+                    <a href="#" ng-click="vm.removeItem(key)"><i class="fa fa-trash fa-lg"></i></a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col col-sm-4">
+            <div class="card">
+              <div class="card-header">
+                Current Item
+              </div>
+              <div class="card-block">
+                {{vm.currentItem}}
               </div>
             </div>
           </div>

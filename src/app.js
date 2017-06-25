@@ -4,33 +4,28 @@
     angular.module("myApp", []);
 
     angular.module("myApp")
-    .controller("timerController", ['$timeout',
-      function($timeout){
+    .controller("cacheController", ['$cacheFactory',
+      function($cacheFactory){
           var vm = this;
-          var timeoutPromise = null;
-          vm.timerValue = 20;
-          vm.startCountDown = function() {
-            countdown();
-          }
-          vm.stopCountDown = function() {
-            $timeout.cancel(timeoutPromise);
+          vm.cacheInst = $cacheFactory("myAppCache");
+          vm.keys = [];
+          console.log(vm.cacheInst);
+
+          vm.addItem=function(key, value) {
+              if(vm.keys.indexOf(key) === -1)
+                vm.keys.push(key);
+              vm.cacheInst.put(key, value);
+              console.log(vm.cacheInst.info(), vm.keys);
           }
 
-          var decrementTimer = function() {
-            vm.timerValue--;
+          vm.removeItem=function(key) {
+            vm.keys.splice(vm.keys.indexOf(key), 1);
+            vm.cacheInst.remove(key);
           }
-          function countdown() {
-            if(vm.timerValue != 0) {
-              decrementTimer();
-              timeoutPromise = $timeout(countdown, 1000);
-            }
+
+          vm.getItem=function(key) {
+            return vm.cacheInst.get(key);
           }
       }
     ])
-    .filter("timerFormatter", function(){
-      return function(timeVal){
-        //console.log(timeVal);
-        return (Math.floor(timeVal/60) + " min, ") + (timeVal % 60) + " sec";
-      }
-    });
 })();
